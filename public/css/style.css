@@ -1,0 +1,123 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #777;
+  line-height: 1.8;
+  background-color: #141414;
+}
+
+.title {
+  bottom: 0;
+  top: 50%;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+.footer {
+  position:absolute;
+  bottom: 0;
+  right: 5%;
+  background-color: transparent;
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.705);
+}
+
+.navigation {
+  color: #fff;
+}
+
+.sign-input {
+  border-radius: 150px;
+  padding: 12px 20px;
+  margin: 20px 15px;
+  background-color: #363636;
+  color: white;
+  box-shadow: 10px 5px 5px rgb(24, 24, 24);
+}
+
+.sign-button {
+  border-radius: 150px;
+  padding: 10px 30px;
+  margin: 20px 20px;
+  background-color: #363636;
+  color: rgb(122, 122, 122);
+  box-shadow: 10px 5px 5px rgb(24, 24, 24);
+}
+
+.sign-button:hover {
+  background-color: #2e2e2e;
+}
+
+img {
+  transition: all .2s linear;
+  margin-bottom: 5px;
+  max-height: 85vh;
+  max-width: 95vw;
+}
+
+.imgdiv {
+  border-radius: 10px; 
+  background-color:#242424; 
+  padding: 20px;
+  min-width: 300px;
+  max-height: fit-content;
+  max-width: fit-content;
+}
+
+@media only screen and (hover: none) and (pointer: coarse){
+
+  .imgdiv {
+    size-adjust: auto;
+    border-radius: 0px;
+    background-color:#ffffff;
+    padding: 5px;
+  }
+  
+}
+
+.btn-anim {
+  transition: all .2s linear;
+  width: 90px;
+}
+
+/* (A) BACKGROUND */
+#boxBack {
+  /* (A1) FULLSCREEN */
+  position: fixed; z-index: 999;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+ 
+  /* (A2) TRANSPARENT BACKGROUND */
+  background: rgba(0, 0, 0, 0.5);
+ 
+  /* (A3) HIDDEN BY DEFAULT */
+  display: none;
+}
+ 
+/* (A4) ADD THIS CSS CLASS TO SHOW */
+#boxBack.show { display: block; }
+ 
+/* (B) DIALOG BOX */
+#boxWrap {
+  /* (B1) CENTER ON SCREEN */
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+ 
+  /* (B2) DIMENSIONS */
+  min-width: 320px; max-width: 600px;
+  padding: 10px;
+ 
+  /* (B3) COLORS */
+  background: rgb(15, 15, 15);
+
+  border-radius: 16px;
+}
+
+#boxTxt, #btnTxt {
+  border-radius: 16px;
+  color:rgba(255, 255, 255, 0.705);
+}

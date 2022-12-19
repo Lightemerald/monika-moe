@@ -1,0 +1,7 @@
+{
+  "apiPort": "2209",
+  "cdnPort": "2210",
+  "token": "",
+  "location": "./images/",
+  "base": "/api"
+}

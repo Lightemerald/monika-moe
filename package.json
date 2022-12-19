@@ -15,7 +15,14 @@
     "express": "^4.18.2",
     "mysql2": "^2.3.3",
     "node-cron": "^3.0.2",
-    "shelljs": "^0.8.5",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-promise": "^6.1.1"
   }
 }
