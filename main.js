@@ -3,7 +3,8 @@ const cron = require('node-cron');
 const { get } = require('./modules/fetcher');
 
 // start servers
-shell.exec('forever stopall');
+shell.exec('cd api && forever stop server.js');
+shell.exec('cd cdn && forever stop server.js');
 shell.exec('cd api && forever start server.js');
 shell.exec('cd cdn && forever start server.js');
 

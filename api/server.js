@@ -6,7 +6,6 @@ const database = require('../config/database.json');
 
 const pool = mysql.createPool(database);
 const app = express();
-app.use(express.raw());
 app.use(express.json());
 app.use(cors({
 	origin: '*',
