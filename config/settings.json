@@ -4,5 +4,5 @@
   "token": "",
   "location": "./images/",
   "base": "/api",
-  "host": "http://localhost:2210/"
+  "host": "http://localhost:2210"
 }
