@@ -14,7 +14,7 @@ app.get('/images/:image', (req, res) => {
 	const image = req.params.image;
 	if (image !== '' && (image.split('.').pop() === 'jpg' || image.split('.').pop() === 'jpeg' || image.split('.').pop() === 'png' || image.split('.').pop() === 'gif' || image.split('.').pop() === 'mp4')) {
 		const path = `${location}${image}`;
-		if (fileExist(path)) {
+		if (fileExist('./cdn/' + path)) {
 			res.status(200).sendFile(path, { root: __dirname });
 		}
 		else {

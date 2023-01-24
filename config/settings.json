@@ -3,5 +3,6 @@
   "cdnPort": "2210",
   "token": "",
   "location": "./images/",
-  "base": "/api"
+  "base": "/api",
+  "host": "http://localhost:2210/"
 }

@@ -1,7 +1,7 @@
 const cors = require('cors');
 const mysql = require('mysql2');
 const express = require('express');
-const { apiPort, cdnPort, token, base } = require('../config/settings.json');
+const { apiPort, token, base, host } = require('../config/settings.json');
 const database = require('../config/database.json');
 
 const pool = mysql.createPool(database);
@@ -25,7 +25,7 @@ app.get(base + '/get', (req, res) => {
 	const rating = req.query.rating | 0;
 	pool.query(`SELECT * FROM images WHERE rating=${rating} ORDER BY RAND() LIMIT 1`, function(err, rows) {
 		if (rows.length >= 1 && !err) {
-			rows[0].image = 'http://localhost:' + cdnPort + '/images/' + rows[0].filename;
+			rows[0].image = host + '/images/' + rows[0].filename;
 			rows[0].code = 200;
 			res.status(200).json(rows[0]);
 		}
