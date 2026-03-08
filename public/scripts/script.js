@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-const api = 'http://localhost:2209/api/get';
+const api = window.location.origin + '/api/get';
 
 // Change style of navbar on scroll
-window.onscroll = function() { myFunction(); };
+window.onscroll = function () { myFunction(); };
 function myFunction() {
 	const navbar = document.getElementById('myNavbar');
 	if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -20,24 +20,21 @@ function toggleFunction() {
 	const x = document.getElementById('navDemo');
 	if (x.className.indexOf('w3-show') === -1) {
 		x.className += ' w3-show';
-		navbar.className += ' w3-black';
+		navbar.className += ' w3-pink';
 	}
 	else {
 		x.className = x.className.replace(' w3-show', '');
-		navbar.className = navbar.className.replace(' w3-black', '');
+		navbar.className = navbar.className.replace(' w3-pink', '');
 	}
 }
 
 function toggleAppMenu() {
-	const navbar = document.getElementById('myNavbar');
 	const x = document.getElementById('appMenu');
 	if (x.className.indexOf('w3-show') === -1) {
 		x.className = x.className.replace(' w3-hide', ' w3-show');
-		navbar.className += ' w3-black';
 	}
 	else {
 		x.className = x.className.replace(' w3-show', ' w3-hide');
-		navbar.className = navbar.className.replace(' w3-black', '');
 	}
 }
 
@@ -66,26 +63,23 @@ function toggleSFW() {
 
 function toggleSRC() {
 	if (document.getElementById('srcbtn').value === 'api') {
-		document.getElementById('srcbtn').value = 'reddit';
-		document.getElementById('srcbtn').textContent = 'REDDIT';
+		document.getElementById('srcbtn').value = 'danbooru';
+		document.getElementById('srcbtn').textContent = 'EXTERNAL';
 		document.getElementById('srcbtn').className = document.getElementById('srcbtn').className.replace(' w3-border-green w3-text-green w3-hover-green', ' w3-border-orange w3-text-orange w3-hover-orange');
 	}
 	else {
 		document.getElementById('srcbtn').value = 'api';
-		document.getElementById('srcbtn').textContent = 'API';
+		document.getElementById('srcbtn').textContent = 'CURATED';
 		document.getElementById('srcbtn').className = document.getElementById('srcbtn').className.replace(' w3-border-orange w3-text-orange w3-hover-orange', ' w3-border-green w3-text-green w3-hover-green');
 	}
 }
 
-function closeMenu() {
-	const navbar = document.getElementById('myNavbar');
-	const menu = document.getElementById('appMenu');
-	menu.className = menu.className.replace(' w3-show', ' w3-hide');
-	navbar.className = navbar.className.replace(' w3-black', '');
+function toggleFullscreen() {
+	const imgdiv = document.getElementById('imgdiv');
+	imgdiv.classList.toggle('fullscreen-mode');
 }
 
 function fetchMonika() {
-	closeMenu();
 	document.getElementById('image').style.opacity = 0.2;
 	document.getElementById('image').src = './img/loading.gif';
 	if (document.getElementById('srcbtn').value === 'api') {
@@ -106,24 +100,22 @@ function fetchMonika() {
 		}
 	}
 	else {
-		const url = 'https://www.reddit.com/r/Monikafandom/random/.json?f=flair_name%3A%22Found+art%22';
+		let rating = 'rating:g or rating:q';
+		if (document.getElementById('sfwbtn').value === '1') rating = 'rating:s';
+		else if (document.getElementById('sfwbtn').value === '2') rating = '-rating:g -rating:q';
+
+		const url = `https://danbooru.donmai.us/posts/random.json?tags=monika_(doki_doki_literature_club)+${rating}`;
 		fetch(url, { cache: 'no-cache' })
 			.then(res => res.json())
-			.then(json => updateReddit(json[0].data));
+			.then(json => updateDanbooru(json));
 	}
 }
 
-function updateReddit(data) {
-	const url = data.children[0].data.url;
-	if (url !== '' && (url.split('.').pop() === 'jpg' || url.split('.').pop() === 'jpeg' || url.split('.').pop() === 'png' || url.split('.').pop() === 'gif' || url.split('.').pop() === 'mp4')) {
-		const isnsfw = data.children[0].data.over_18;
-		if (isnsfw && document.getElementById('sfwbtn').value === '2') {
-			fetchMonika();
-		}
-		else {
-			document.getElementById('image').src = url;
-			document.getElementById('image').style.opacity = 1;
-		}
+function updateDanbooru(data) {
+	const url = data.file_url || data.large_file_url || data.preview_file_url;
+	if (url) {
+		document.getElementById('image').src = url;
+		document.getElementById('image').style.opacity = 1;
 	}
 	else {
 		fetchMonika();
@@ -142,11 +134,11 @@ function disableF5(e) {
 
 addEventListener('keydown', disableF5);
 
-window.onload = function() {
-	// if (localStorage.justMonika !== 1) {
-	//	dbox('Hi! This is your first time here,\nto get a new image click on the current one.');
-	//	localStorage.justMonika = 1;
-	// }
+window.onload = function () {
+	if (localStorage.justMonika !== 1) {
+		dbox('Just Monika!');
+		localStorage.justMonika = 1;
+	}
 	fetchMonika();
 };
 

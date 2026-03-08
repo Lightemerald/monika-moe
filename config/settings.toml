@@ -1,0 +1,17 @@
+# this file is optional, environment variables prefixed with MONIKA__ will override
+
+# api settings
+api_port = 2209
+cdn_port = 2210
+location = "/opt/monika-moe/cdn/images/"
+base = "/api"
+host = "http://localhost:2210"
+token = ""
+
+# database configuration
+[database]
+host = "localhost"
+user = "monika_moe"
+password = ""
+database = "monika_moe"
+connection_limit = 10

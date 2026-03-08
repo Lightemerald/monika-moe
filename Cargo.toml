@@ -1,0 +1,8 @@
+[workspace]
+name = "monika-moe"
+version = "1.0.0"
+resolver = "2"
+members = [
+    "api",
+    "cdn",
+]
