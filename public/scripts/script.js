@@ -100,9 +100,9 @@ function fetchMonika() {
 		}
 	}
 	else {
-		let rating = 'rating:g or rating:q';
+		let rating = 'rating:g';
 		if (document.getElementById('sfwbtn').value === '1') rating = 'rating:s';
-		else if (document.getElementById('sfwbtn').value === '2') rating = '-rating:g -rating:q';
+		else if (document.getElementById('sfwbtn').value === '2') rating = '-rating:g -rating:s';
 
 		const url = `https://danbooru.donmai.us/posts/random.json?tags=monika_(doki_doki_literature_club)+${rating}`;
 		fetch(url, { cache: 'no-cache' })
